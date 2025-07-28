@@ -23,6 +23,44 @@
     <img src=".assets/preview.png" alt="December Preview">
   </a>
 
+## Project Context
+
+This project is called **December**. It is an open-source, local-first alternative to AI-powered development platforms like Loveable, Replit, and Bolt. December allows users to build full-stack applications from natural language prompts using AI, with a focus on privacy and cost savings by running everything locally and using your own API keys.
+
+**Key Features:**
+- AI-powered project creation from text prompts
+- Containerized Next.js applications using Docker
+- Live preview with mobile and desktop views
+- Monaco code editor with file management
+- Real-time chat assistant for development help
+- Project export and deployment
+
+**Tech Stack:**
+- **Frontend:** Next.js (TypeScript, Bun)
+- **Backend:** Node.js (TypeScript, Bun)
+- **Containerization:** Docker, Docker Compose
+- **Other:** Uses OpenAI-compatible API keys for AI features
+
+**How it works:**
+- The backend and frontend are both containerized and orchestrated via Docker Compose.
+- Users interact with the platform through a web interface (localhost:3000).
+- The backend handles project generation, file management, and AI interactions (localhost:4000).
+- All code and data remain on the user’s machine for privacy.
+
+**Setup Notes:**
+- Requires Docker and Docker Compose.
+- API keys for OpenAI-compatible providers must be set in `config.ts`.
+- The `start.sh` script or `docker-compose up --build` is used to launch the environment.
+
+**Folder Structure:**
+- `/backend` — Backend server code and Dockerfile
+- `/frontend` — Frontend Next.js app and Dockerfile
+- `docker-compose.yml` — Orchestrates both services
+- `config.ts` — API key and model configuration
+
+**Typical Use Case:**
+- A developer wants to quickly scaffold and build full-stack apps using AI, with all data and code kept private and local.
+
 ## Features
 
     ✅ AI-powered project creation from natural language prompts
@@ -127,8 +165,6 @@ The developers and contributors of this project do not accept any responsibility
 Please note that the use of the large language models can be expensive due to its token usage. By utilizing this project, you acknowledge that you are responsible for monitoring and managing your own token usage and the associated costs. It is highly recommended to check your API usage regularly and set up any necessary limits or alerts to prevent unexpected charges.
 
 By using December, you agree to indemnify, defend, and hold harmless the developers, contributors, and any affiliated parties from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising from your use of this software or your violation of these terms.
-
-<!-- LICENSE -->
 
 ## License
 
