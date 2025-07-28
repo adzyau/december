@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  december:
+    build: .
+    container_name: december-app
+    ports:
+      - "3000:3000"  # Frontend
+      - "4000:4000"  # Backend API
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Required for Docker-in-Docker
+      - ./config.ts:/app/config.ts:ro  # Mount config file
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - december-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: december-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro  # SSL certificates (optional)
+    depends_on:
+      - december
+    restart: unless-stopped
+    networks:
+      - december-network
+
+networks:
+  december-network:
+    driver: bridge
