@@ -2,7 +2,7 @@
 FROM oven/bun:1.0.25 as frontend-build
 WORKDIR /app/frontend
 COPY frontend/package.json frontend/bun.lock ./
-RUN bun install --frozen-lockfile
+RUN bun install
 COPY frontend ./
 RUN bun run build
 
@@ -10,7 +10,7 @@ RUN bun run build
 FROM oven/bun:1.0.25 as backend-build
 WORKDIR /app/backend
 COPY backend/package.json backend/bun.lock ./
-RUN bun install --frozen-lockfile
+RUN bun install
 COPY backend ./
 COPY config.ts /app/backend/config.ts
 RUN bun build src/index.ts
@@ -35,9 +35,9 @@ COPY config.ts /app/backend/config.ts
 
 # Install dependencies for both
 WORKDIR /app/frontend
-RUN bun install --frozen-lockfile
+RUN bun install
 WORKDIR /app/backend
-RUN bun install --frozen-lockfile
+RUN bun install
 
 # Expose ports (adjust if needed)
 EXPOSE 3000 3001
