@@ -8,7 +8,7 @@ export const config = {
     baseUrl: "https://openrouter.ai/api/v1",
 
     // Your API key for provider, if using Ollama enter "ollama" here
-    apiKey: "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",
+    apiKey: "your-api-key-here", // Replace with your actual API key
 
     // The model to use, e.g., "gpt-4", "gpt-3.5-turbo", or "ollama/llama2"
     model: "anthropic/claude-sonnet-4",
