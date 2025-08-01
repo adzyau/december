@@ -1,0 +1,47 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      # Use simple bind mounts for better Windows compatibility
+      - ./backend/src:/app/src
+      - backend_node_modules:/app/node_modules
+      - ./config.ts:/app/config.ts:ro
+    environment:
+      - PORT=4000
+      - NODE_ENV=development
+    restart: unless-stopped
+    networks:
+      - december_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      # Use simple bind mounts for better Windows compatibility
+      - ./frontend/src:/app/src
+      - frontend_node_modules:/app/node_modules
+      - frontend_next:/app/.next
+    environment:
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+    restart: unless-stopped
+    networks:
+      - december_network
+    depends_on:
+      - backend
+
+volumes:
+  backend_node_modules:
+  frontend_node_modules:
+  frontend_next:
+
+networks:
+  december_network:
+    driver: bridge
