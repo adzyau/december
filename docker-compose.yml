@@ -1,8 +1,7 @@
-version: '3.8'
 services:
   backend:
     build:
-      context: ./backend/src
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - "4000:4000"
@@ -21,4 +20,4 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app
-    restart: unless-stopped 
+    restart: unless-stopped

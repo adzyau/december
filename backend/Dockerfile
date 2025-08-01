@@ -19,11 +19,8 @@ RUN bun install
 # Copy the rest of the app
 COPY . .
 
-# Install next globally
-RUN bun add -g next@13.4.19
+# Expose the backend port
+EXPOSE 4000
 
-# Expose the frontend port
-EXPOSE 3000
-
-# Start the Next.js app in development mode
+# Start the backend server
 CMD ["bun", "run", "dev"]
