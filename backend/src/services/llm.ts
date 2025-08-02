@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import { config } from "../../config";
-import prompt from "../utils/prompt.txt";
+import prompt from "../utils/prompt";
 import * as dockerService from "./docker";
 import * as fileService from "./file";
 
